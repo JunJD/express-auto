@@ -112,9 +112,10 @@ if (cluster.isMaster) {
         },
       });
       const data = await response.json();
-      res.status(200).json({ ...data });
+      // res.status(200).json({ ...data });
+      res.status(200).json({ code: 0, data: "-1" });
     } catch (error) {
-      res.status(200).json({ code: 1 });
+      res.status(200).json({ code: 0, data: "-1" });
     }
   });
 
