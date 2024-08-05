@@ -26,7 +26,7 @@ if (cluster.isMaster) {
   const app = express();
   app.use(express.json());
   app.use(cors());
-  
+
   // getBatteryInfo 路由
   app.post('/api/getBatteryInfo', async (req, res) => {
     try {
@@ -100,22 +100,18 @@ if (cluster.isMaster) {
 
   // login 路由
   app.post('/api/login', async (req, res) => {
-    try {
-      const { usercode, password } = req.body;
-      const response = await fetch(`https://jgjfjdcgl.gat.zj.gov.cn:5102/inf_zpm/hz_mysql_api/BatteryBinding/login?usercode=${usercode}&password=${password}&city=0573`, {
-        method: 'GET',
-        headers: {
-          authority: 'jgjfjdcgl.gat.zj.gov.cn:5102',
-          scheme: 'https',
-          'accept-encoding': 'gzip',
-          'user-agent': 'okhttp/4.9.3',
-        },
-      });
-      const data = await response.json();
-      res.status(200).json({ ...data });
-    } catch (error) {
-      res.status(200).json({ code: 0, data: 1, error });
-    }
+    const { usercode, password } = req.body;
+    const response = await fetch(`https://jgjfjdcgl.gat.zj.gov.cn:5102/inf_zpm/hz_mysql_api/BatteryBinding/login?usercode=${usercode}&password=${password}&city=0573`, {
+      method: 'GET',
+      headers: {
+        authority: 'jgjfjdcgl.gat.zj.gov.cn:5102',
+        scheme: 'https',
+        'accept-encoding': 'gzip',
+        'user-agent': 'okhttp/4.9.3',
+      },
+    });
+    const data = await response.json();
+    res.status(200).json({ ...data });
   });
 
   // verifyBattery 路由
