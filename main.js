@@ -43,7 +43,7 @@ if (cluster.isMaster) {
       const data = await response.json();
       res.status(200).json({ ...data, url: `https://jgjfjdcgl.gat.zj.gov.cn:5102/inf_zpm/hz_mysql_api/BatteryBinding/dcinfoquery?token=${token}&dcbhurl=${dcbhurl}` });
     } catch (error) {
-      res.status(200).json({ code: 1 });
+      res.status(200).json({ code: 1, error });
     }
   });
 
@@ -74,7 +74,7 @@ if (cluster.isMaster) {
 
       res.status(200).json({ code: 销售单位未入库 && !车辆制造商 ? 0 : 1, url: `https://www.pzcode.cn/pwb/${batteryNo}` });
     } catch (error) {
-      res.status(200).json({ code: 1 });
+      res.status(200).json({ code: 1, error });
     }
   });
 
@@ -94,7 +94,7 @@ if (cluster.isMaster) {
       const data = await response.json();
       res.status(200).json({ ...data, url: `https://jgjfjdcgl.gat.zj.gov.cn:5102/inf_zpm/hz_mysql_api/BatteryBinding/hgzinfoquery?token=${token}&cjhurl=${cjhurl}` });
     } catch (error) {
-      res.status(200).json({ code: 1 });
+      res.status(200).json({ code: 1, error });
     }
   });
 
@@ -112,10 +112,9 @@ if (cluster.isMaster) {
         },
       });
       const data = await response.json();
-      // res.status(200).json({ ...data });
-      res.status(200).json({ code: 0, data: "-1" });
+      res.status(200).json({ ...data });
     } catch (error) {
-      res.status(200).json({ code: 0, data: "-1" });
+      res.status(200).json({ code: 0, data: 1, error });
     }
   });
 
@@ -135,7 +134,7 @@ if (cluster.isMaster) {
       const data = await response.json();
       res.status(200).json({ ...data, url: `/checkCjhDc?dcbhurl=${dcbhurl}&city=0573&token=${token}&cjhurl=${cjhurl}` });
     } catch (error) {
-      res.status(200).json({ code: 1 });
+      res.status(200).json({ code: 1, error });
     }
   });
 
