@@ -31,7 +31,7 @@ if (cluster.isMaster) {
   app.post('/api/getBatteryInfo', async (req, res) => {
     try {
       const { token, dcbhurl } = req.body;
-      const response = await fetch(`https://jgjfjdcgl.gat.zj.gov.cn:5102/inf_zpm/hz_mysql_api/BatteryBinding/dcinfoquery?token=${token}&dcbhurl=${dcbhurl}`, {
+      const response = await fetch(`https://wudi.eva.yn.cn/inf_zpm/hz_mysql_api/BatteryBinding/dcinfoquery?token=${token}&dcbhurl=${dcbhurl}`, {
         method: 'GET',
         headers: {
           authority: 'jgjfjdcgl.gat.zj.gov.cn:5102',
@@ -41,7 +41,7 @@ if (cluster.isMaster) {
         },
       });
       const data = await response.json();
-      res.status(200).json({ ...data, url: `https://jgjfjdcgl.gat.zj.gov.cn:5102/inf_zpm/hz_mysql_api/BatteryBinding/dcinfoquery?token=${token}&dcbhurl=${dcbhurl}` });
+      res.status(200).json({ ...data, url: `https://wudi.eva.yn.cn/inf_zpm/hz_mysql_api/BatteryBinding/dcinfoquery?token=${token}&dcbhurl=${dcbhurl}` });
     } catch (error) {
       res.status(200).json({ code: 1, error });
     }
@@ -82,7 +82,7 @@ if (cluster.isMaster) {
   app.post('/api/getCarNum', async (req, res) => {
     try {
       const { token, cjhurl } = req.body;
-      const response = await fetch(`https://jgjfjdcgl.gat.zj.gov.cn:5102/inf_zpm/hz_mysql_api/BatteryBinding/hgzinfoquery?token=${token}&cjhurl=${cjhurl}`, {
+      const response = await fetch(`https://wudi.eva.yn.cn/inf_zpm/hz_mysql_api/BatteryBinding/hgzinfoquery?token=${token}&cjhurl=${cjhurl}`, {
         method: 'GET',
         headers: {
           authority: 'jgjfjdcgl.gat.zj.gov.cn:5102',
@@ -92,7 +92,7 @@ if (cluster.isMaster) {
         },
       });
       const data = await response.json();
-      res.status(200).json({ ...data, url: `https://jgjfjdcgl.gat.zj.gov.cn:5102/inf_zpm/hz_mysql_api/BatteryBinding/hgzinfoquery?token=${token}&cjhurl=${cjhurl}` });
+      res.status(200).json({ ...data, url: `https://wudi.eva.yn.cn/inf_zpm/hz_mysql_api/BatteryBinding/hgzinfoquery?token=${token}&cjhurl=${cjhurl}` });
     } catch (error) {
       res.status(200).json({ code: 1, error });
     }
@@ -101,7 +101,7 @@ if (cluster.isMaster) {
   // login 路由
   app.post('/api/login', async (req, res) => {
     const { usercode, password } = req.body;
-    const response = await fetch(`https://jgjfjdcgl.gat.zj.gov.cn:5102/inf_zpm/hz_mysql_api/BatteryBinding/login?usercode=${usercode}&password=${password}&city=0573`, {
+    const response = await fetch(`https://wudi.eva.yn.cn/inf_zpm/hz_mysql_api/BatteryBinding/login?usercode=${usercode}&password=${password}&city=0573`, {
       method: 'GET',
       headers: {
         authority: 'jgjfjdcgl.gat.zj.gov.cn:5102',
@@ -118,7 +118,7 @@ if (cluster.isMaster) {
   app.post('/api/verifyBattery', async (req, res) => {
     try {
       const { token, dcbhurl, cjhurl } = req.body;
-      const response = await fetch(`https://jgjfjdcgl.gat.zj.gov.cn:5102/inf_zpm/hz_mysql_api/BatteryBinding/checkCjhDc?city=0573&token=${token}&cjhurl=${cjhurl}&dcbhurl=${dcbhurl}`, {
+      const response = await fetch(`https://wudi.eva.yn.cn/inf_zpm/hz_mysql_api/BatteryBinding/checkCjhDc?city=0573&token=${token}&cjhurl=${cjhurl}&dcbhurl=${dcbhurl}`, {
         method: 'GET',
         headers: {
           authority: 'jgjfjdcgl.gat.zj.gov.cn:5102',
