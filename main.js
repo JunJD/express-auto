@@ -155,6 +155,7 @@ if (cluster.isMaster) {
 
   app.get('/api/devices', (req, res) => {
     const devices = readData() ?? [];
+    res.setHeader('Content-Security-Policy','upgrade-insecure-requests');
     res.status(200).json({ code: 0, devices });
   });
 
@@ -165,8 +166,10 @@ if (cluster.isMaster) {
       const newDevice = { deviceId, enabled };
       currentData.push(newDevice);
       writeData(currentData);
+      res.setHeader('Content-Security-Policy','upgrade-insecure-requests');
       res.status(200).json({ code: 0, devices: currentData });
     } catch (error) {
+      res.setHeader('Content-Security-Policy','upgrade-insecure-requests');
       res.status(500).json({ code: 1, message: 'Error processing POST request' });
     }
   });
@@ -179,6 +182,7 @@ if (cluster.isMaster) {
         device.deviceId === updateDeviceId ? { ...device, enabled: updateEnabled } : device
       );
       writeData(dataToUpdate);
+      res.setHeader('Content-Security-Policy','upgrade-insecure-requests');
       res.status(200).json({ code: 0, devices: dataToUpdate });
     } catch (error) {
       res.status(500).json({ code: 1, message: 'Error processing PUT request' });
@@ -191,8 +195,10 @@ if (cluster.isMaster) {
       let dataToDelete = readData();
       dataToDelete = dataToDelete.filter((device) => device.deviceId !== deleteDeviceId);
       writeData(dataToDelete);
+      res.setHeader('Content-Security-Policy','upgrade-insecure-requests');
       res.status(200).json({ code: 0, devices: dataToDelete });
     } catch (error) {
+      res.setHeader('Content-Security-Policy','upgrade-insecure-requests');
       res.status(500).json({ code: 1, message: 'Error processing DELETE request' });
     }
   });
